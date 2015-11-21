@@ -13,8 +13,8 @@ admin.site.register(Unity, UnityAdmin)
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', )
-    list_filter = ('name',)
+    list_display = ('id', 'name', 'extra')
+    list_filter = ('name', 'extra',)
 
 admin.site.register(Answer, AnswerAdmin)
 
