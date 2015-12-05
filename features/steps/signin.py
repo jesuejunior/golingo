@@ -13,28 +13,22 @@ def step_impl(context, username, password):
 
 @when('{username} logs in with password {password}')
 def step_impl(context, username, password):
-    br = context.browser
-    login_page = br.get(context.browser_url('/accounts/login/'))
+    browser = context.browser
 
-    login_form = login_page.soup.select(".form-signin")[0]
+    browser.visit(context.browser_url('/accounts/login/'))
+    browser.fill('username', username)
+    browser.fill('password', username)
 
-    # login_form.select("#id_username")[0]['value'] = args.username
-    # login_form.select("#id_password")[0]['value'] = args.password
-
-    login_form.input({'id_username': username, 'id_password': password})
-
-    # submit form
-    response = br.submit(login_form, login_page.url)
-    assert response.status_code == 200
+    browser.find_by_value('login').first.click()
 
 
 @then('he sees the foo blah')
 def step_impl(context):
-    br = context.browser
-    assert br.geturl().endswith('/home')
+    browser = context.browser
+    assert browser.is_element_present_by_text('Atividades')
 
 
 @then('login fails')
 def step_impl(context):
-    br = context.browser
-    assert br.geturl().endswith('/accounts/login/')
+    browser = context.browser
+    assert browser.is_element_present_by_text('Entrar')

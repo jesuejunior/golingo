@@ -22,5 +22,5 @@ def before_all(context):
 
 
 def before_scenario(context, scenario):
-    import mechanicalsoup
-    context.browser = mechanicalsoup.Browser()
+    import splinter
+    context.browser = splinter.Browser()

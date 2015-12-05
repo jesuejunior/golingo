@@ -9,3 +9,4 @@ model-mommy==1.2.5.1
 MechanicalSoup==0.4.0
 wsgi_intercept
 django-braces==1.8.1
+splinter
