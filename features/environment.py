@@ -20,18 +20,6 @@ def before_all(context):
 
     context.browser_url = browser_url
 
-    from bs4 import BeautifulSoup
-
-    def parse_soup():
-        """Use BeautifulSoup to parse the current response and return the DOM tree.
-        """
-        r = context.browser.response()
-        html = r.read()
-        r.seek(0)
-        return BeautifulSoup(html)
-
-    context.parse_soup = parse_soup
-
 
 def before_scenario(context, scenario):
     import mechanicalsoup
