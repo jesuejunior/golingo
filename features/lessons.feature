@@ -1,4 +1,4 @@
-Feature: Questions
+Feature: Make lesson
 
   Scenario: List questions in lesson
 
@@ -7,3 +7,7 @@ Feature: Questions
   Scenario: List questions in lesson with audio
 
   Scenario: List answers in question
+
+  Scenario: Answer a question
+
+  Scenario: Finish lesson
