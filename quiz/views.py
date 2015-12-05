@@ -1,15 +1,17 @@
 # Create your views here.
 from django.template.response import TemplateResponse
 from django.views.generic import View, ListView
-from quiz.models import Question, Unity
+from braces.views import LoginRequiredMixin
+from quiz.models import Question, Unity, Lesson
 
 
-class HomeTemplateView(ListView):
+class HomeTemplateView(ListView, LoginRequiredMixin):
     template_name = 'home.html'
     model = Unity
 
     def get_context_data(self, **kwargs):
         context = super(HomeTemplateView, self).get_context_data(**kwargs)
+        context['lessons'] = Lesson.objects.all()
         return context
 
 
