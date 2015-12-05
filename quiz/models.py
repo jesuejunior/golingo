@@ -3,8 +3,8 @@ from django.db import models
 
 
 class Unity(models.Model):
-    number = models.IntegerField(verbose_name='Unity', unique=True)
     name = models.CharField(verbose_name='Name', max_length=120)
+    number = models.IntegerField(verbose_name='Unity', unique=True)
     description = models.TextField(verbose_name='Description', null=True, blank=True)
 
     def __str__(self):
