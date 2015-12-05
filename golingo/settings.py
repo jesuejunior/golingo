@@ -25,7 +25,7 @@ SECRET_KEY = 'ego4*=-lpv6u+9iq6wed&7%#=_ywu@6i_i0)m0)*ew#%wgw67x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
     'quiz',
 )
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'golingo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,3 +102,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/collect')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static/'),
+)
