@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -53,6 +55,7 @@ class Question(models.Model):
 class Result(models.Model):
     user = models.ForeignKey(User)
     lesson = models.ForeignKey(Lesson)
+    finished_at = models.DateTimeField(default=datetime.now)
     correct = models.IntegerField(verbose_name='Respostas corretas')
     wrong = models.IntegerField(verbose_name='Respostas erradas')
 
