@@ -1,0 +1,18 @@
+{% extends 'menu.html' %}
+{% load staticfiles %}
+{% block container %}
+
+    <div class="jumbotron">
+        <h2>GoLingo <i><span class="lead">Aprenda inglês praticando.</span></i></h2>
+        <p class="lead">Com simples perguntas e respostas você vai aprender a gramatica, formar frases entre outros.</p>
+
+{#        <form action="" method="post">#}
+{#                {% csrf_token %}#}
+{#                #}
+{#                <input class="btn btn-lg btn-success" type="submit" id="shorten-it" value="Manda ver!">#}
+{#        </form>#}
+    </div>
+    {% if link == '500' %}
+        <div class="alert alert-warning"> Tá de brincation with me cara?</div>
+    {% endif %}
+{% endblock %}
