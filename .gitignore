@@ -84,7 +84,7 @@ pip-log.txt
 test/unit/app-path/
 
 
-collect/*
+static/collect/*
 
 cache/
 output/
