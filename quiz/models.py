@@ -13,6 +13,9 @@ class Unity(models.Model):
     def __str__(self):
         return self.name
 
+    def get_lessons(self):
+        return Lesson.objects.filter(unity=self).values_list('name', flat=True)
+
 
 class Answer(models.Model):
     name = models.CharField(verbose_name='Answer', max_length=255)
