@@ -1,0 +1,43 @@
+'{% extends 'menu.html' %}
+{% load staticfiles %}
+{% block container %}
+<h3>Minha lista de URL reduzidas, olha que lindo...</h3>
+<br>
+<div id="listar-render">
+    <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>URL Reduzida</th>
+                  <th>URL Original</th>
+                </tr>
+              </thead>
+              <tbody>
+{% for link in links %}
+        <tr>
+          <td>{{ link.count }}</td>
+          <td><a style="color: #000000" target="_blank" href="{% url 'home' %}{{ link.url_hash }}">{{ link.url_hash }}</a></td>
+          <td>{{ link.url }}</td>
+        </tr>
+{% endfor %}
+            </tbody>
+    </table>
+</div>
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if links.has_previous %}
+                <a href="?page={{ links.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ links.number }} de {{ links.paginator.num_pages }}.
+            </span>
+
+            {% if links.has_next %}
+                <a href="?page={{ links.next_page_number }}">próxima</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
