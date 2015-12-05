@@ -51,7 +51,7 @@ admin.site.register(Question, QuestionAdmin)
 
 
 class ResultAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'lesson', 'correct', 'wrong', 'total')
-    list_filter = ('user', 'lesson', 'correct', 'wrong', 'total', )
+    list_display = ('id', 'user', 'lesson', 'correct', 'wrong',)
+    list_filter = ('user', 'lesson', 'correct', 'wrong',)
 
 admin.site.register(Result, ResultAdmin)

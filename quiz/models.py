@@ -6,6 +6,7 @@ class Unity(models.Model):
     name = models.CharField(verbose_name='Name', max_length=120)
     number = models.IntegerField(verbose_name='Unity', unique=True)
     description = models.TextField(verbose_name='Description', null=True, blank=True)
+    level = models.IntegerField(default=1, verbose_name='Level')
 
     def __str__(self):
         return self.name
@@ -41,7 +42,7 @@ class Question(models.Model):
     answers = models.ManyToManyField(Answer, related_name='answers', db_table='question_has_answer', default=None,
                                      null=True, blank=True)
     answer_correct = models.ForeignKey(Answer, verbose_name='Correct answer')
-    lesson = models.ForeignKey(Lesson, verbose_name=u'Lesson')
+    lesson = models.ForeignKey(Lesson, verbose_name=u'Lesson', related_name='questions')
     audio = models.ForeignKey(Media, related_name='audio', blank=True, null=True, on_delete=models.DO_NOTHING)
     image = models.ForeignKey(Media, related_name='image', blank=True, null=True, on_delete=models.DO_NOTHING)
 
@@ -54,15 +55,6 @@ class Result(models.Model):
     lesson = models.ForeignKey(Lesson)
     correct = models.IntegerField(verbose_name='Respostas corretas')
     wrong = models.IntegerField(verbose_name='Respostas erradas')
-    total = models.IntegerField(verbose_name='Total de perguntas')
 
     def __str__(self):
         return self.user.username
-
-
-class Level(models.Model):
-    name = models.CharField(verbose_name='Dificuldade', max_length=120)
-    unity = models.ForeignKey('Unity', verbose_name='Unidade')
-
-    def __str__(self):
-        return self.name
