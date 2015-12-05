@@ -1,9 +1,7 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.template.response import TemplateResponse
-from django.views.generic import View
-from quiz.models import Question
+from django.views.generic import View, ListView
+from quiz.models import Question, Level
 
 
 class HomeTemplateView(View):
@@ -39,3 +37,12 @@ class QuestionTemplateView(View):
         cxt = {}
         cxt['form_answers'] = Question.answers
         return cxt
+
+
+class LevelListView(ListView):
+    template_name = 'level.html'
+    model = Level
+
+    def get_context_data(self, **kwargs):
+        context = super(LevelListView, self).get_context_data(**kwargs)
+        return context
