@@ -2,16 +2,43 @@
 {% load staticfiles %}
 {% block container %}
 
-    <div class="jumbotron">
-        <h2>GoLingo <i><span class="lead">Aprenda inglês praticando.</span></i></h2>
-        <p class="lead">Com simples perguntas e respostas você vai aprender a gramatica, formar frases entre outros.</p>
-
-{#        <form action="" method="post">#}
-{#                {% csrf_token %}#}
-{#                #}
-{#                <input class="btn btn-lg btn-success" type="submit" id="shorten-it" value="Manda ver!">#}
-{#        </form>#}
-    </div>
+    <h1>Atividades</h1>
+    <table class="table table-bordered">
+        {% for unity in object_list %}
+            {% if unity.level == '1' %}
+                <thead>
+                <tr class="success">
+                    <th>Level - {{ unity.level }}</th>
+                </tr>
+                </thead>
+            {% endif %}
+            <tbody>
+            <tr>
+                <td>Unidade - {{ unity.name }}</td>
+            </tr>
+            </tbody>
+            <thead>
+            <tr class="warning">
+                <th>Level - 2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Unidade - {{ unity.name }}</td>
+            </tr>
+            </tbody>
+            <thead>
+            <tr class="danger">
+                <th>Level - 3</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Unidade - {{ unity.name }}</td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
     {% if link == '500' %}
         <div class="alert alert-warning"> Tá de brincation with me cara?</div>
     {% endif %}
