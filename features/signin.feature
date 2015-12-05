@@ -1,6 +1,11 @@
-Feature: Logging in the application
+Feature: Login in the application
 
-  Scenario: Log into system and sees the foo blah
-    Given Nicolas, an user
-    When Nicolas logs in
+  Scenario: Successful Login
+    Given Barbudao, an user
+    When Barbudao logs in
     Then he sees the foo blah
+
+  Scenario: Login fails for unregistred user
+
+
+  Scenario: Login fails for invalid user
