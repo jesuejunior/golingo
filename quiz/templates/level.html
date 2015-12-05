@@ -1,0 +1,12 @@
+{% extends 'menu.html' %}
+{% load staticfiles %}
+{% block container %}
+    <h1>Dificuldades</h1>
+    <ul>
+        {% for level in object_list %}
+            <li>{{ level.name}}</li>
+        {% empty %}
+            <li>Dificuldade não cadastrada.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

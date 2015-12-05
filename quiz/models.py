@@ -58,3 +58,11 @@ class Result(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Level(models.Model):
+    name = models.CharField(verbose_name='Dificuldade', max_length=120)
+    unity = models.ForeignKey('Unity', verbose_name='Unidade')
+
+    def __str__(self):
+        return self.name
