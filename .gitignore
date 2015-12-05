@@ -83,6 +83,9 @@ pip-log.txt
 # Data created by the unit tests
 test/unit/app-path/
 
+
+collect/*
+
 cache/
 output/
 *.pid
