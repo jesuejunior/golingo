@@ -1,0 +1,7 @@
+cadastro
+login
+listar perguntas
+responder perguntas
+"tocar audio"
+selecionar dificuldade
+envio de e-mail
