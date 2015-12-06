@@ -9,12 +9,11 @@ Feature: Signup in the application
     * He goes to the signup form and in the <field> he types <input>
     * He succesfuly singup and is redirect to the home page
 
-  Examples:
-    | field                | input |
-    | e-mail               | roberto@gemail.com|
-    | username             | roberto_roberto|
-    | password             | q1w2e3|
-    | password_confirmation| q1w2e3|
+      | field                | input |
+      | e-mail               | roberto@gemail.com|
+      | username             | roberto_roberto|
+      | password             | q1w2e3|
+      | password_confirmation| q1w2e3|
 
 
   Scenario: Can't signup with blank e-mail
