@@ -31,7 +31,6 @@ class UnityModelTest(TestCase):
         unity = mommy.make(Unity, id=12)
         mommy.make(Lesson, name='lesson 1', unity=unity)
         self.assertTrue(unity.get_lessons, ['lesson 1'])
-        
 
     def test_level_field(self):
         level = Unity._meta.get_field_by_name('level')[0]
@@ -91,9 +90,6 @@ class MediaModelTest(TestCase):
 
 
 class QuestionModelTest(TestCase):
-    # lesson = models.ForeignKey(Lesson, verbose_name=u'Lesson')
-    # audio = models.ForeignKey(Media, related_name='audio', blank=True, null=True, on_delete=models.DO_NOTHING)
-    # image = models.ForeignKey(Media, related_name='image', blank=True, null=True, on_delete=models.DO_NOTHING)
 
     def test_name_field(self):
         name = Question._meta.get_field_by_name('name')[0]
@@ -131,9 +127,8 @@ class QuestionModelTest(TestCase):
         self.assertTrue(image.blank)
         self.assertTrue(image.null)
 
+
 class ResultModelTest(TestCase):
-    # correct = models.IntegerField(verbose_name='Respostas corretas')
-    # wrong = models.IntegerField(verbose_name='Respostas erradas')
 
     def test_user_field(self):
         user = Result._meta.get_field_by_name('user')[0]
