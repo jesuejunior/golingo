@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-Teste question
-</body>
-</html>
+'{% extends 'menu.html' %}
+{% load staticfiles %}
+{% block container %}
+        <form method="post" action="" class="text-center" style="max-width: 550px;margin:0 auto">
+            <h6>{{ question }}</h6>
+            {% for answer in answers %}
+                <input type="radio" name="answer" value="{{ answer.id }}">{{ answer.name }} - {{ answer.extra }}<br>
+            {% endfor %}
+            <input type="submit" value="verify" class="btn btn-sm btn-primary btn-block"/>
+        </form>
+{% endblock %}
