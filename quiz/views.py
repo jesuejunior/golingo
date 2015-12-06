@@ -5,7 +5,7 @@ from braces.views import LoginRequiredMixin
 from quiz.models import Question, Unity, Lesson
 
 
-class HomeTemplateView(ListView, LoginRequiredMixin):
+class HomeTemplateView(LoginRequiredMixin, ListView):
     template_name = 'home.html'
     model = Unity
 
