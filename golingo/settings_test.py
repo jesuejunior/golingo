@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = 'jesuejunior'
 from golingo.settings import *
 
 DATABASES['default'] = {

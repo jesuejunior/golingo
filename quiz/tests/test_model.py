@@ -1,5 +1,6 @@
 # encoding: utf-8
-__author__ = 'jesuejunior'
+from model_mommy import mommy
+import pytest
 from quiz.models import Unity, Answer, Lesson, Media, Question, Result
 from unittest import TestCase
 from django.db import models
@@ -24,6 +25,13 @@ class UnityModelTest(TestCase):
         self.assertEquals(description.__class__, models.TextField)
         self.assertTrue(description.null)
         self.assertTrue(description.blank)
+
+    @pytest.mark.django_db
+    def test_get_lessons(self):
+        unity = mommy.make(Unity, id=12)
+        mommy.make(Lesson, name='lesson 1', unity=unity)
+        self.assertTrue(unity.get_lessons, ['lesson 1'])
+        
 
     def test_level_field(self):
         level = Unity._meta.get_field_by_name('level')[0]

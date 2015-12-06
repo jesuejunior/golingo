@@ -8,6 +8,4 @@ Feature: Make lesson
 
   Scenario: List answers in question
 
-  Scenario: Answer a question
-
-  Scenario: Finish lesson
+  Scenario: Submit a lesson

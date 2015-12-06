@@ -2,39 +2,42 @@
 {% load staticfiles %}
 {% block container %}
 
-    <h1>Atividades</h1>
+    <h3 style="text-align: center">Atividades</h3>
     <table class="table table-bordered">
         {% for unity in object_list %}
-            {% if unity.level == '1' %}
+            {% if unity.level == 1 %}
                 <thead>
                 <tr class="success">
                     <th>Level - {{ unity.level }}</th>
                 </tr>
                 </thead>
+            {% elif unity.level == 2 %}
+                <thead>
+                <tr class="warning">
+                    <th>Level - {{ unity.level }}</th>
+                </tr>
+                </thead>
+            {% else %}
+                <thead>
+                <tr class="danger">
+                    <th>Level - {{ unity.level }}</th>
+                </tr>
+                </thead>
             {% endif %}
+
             <tbody>
             <tr>
-                <td>Unidade - {{ unity.name }}</td>
-            </tr>
-            </tbody>
-            <thead>
-            <tr class="warning">
-                <th>Level - 2</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Unidade - {{ unity.name }}</td>
-            </tr>
-            </tbody>
-            <thead>
-            <tr class="danger">
-                <th>Level - 3</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Unidade - {{ unity.name }}</td>
+                <td class="accordion-toggle"  data-toggle="collapse" data-target="#collapseOn">
+                    Unidade - {{ unity.name }}
+                </td>
+            </tr><tr>
+                <td colspan="3">
+                    <div id="collapseOne" class="collapse in">
+                        {%  for lesson in unity.get_lessons %}
+                            {{ lesson }} <br />
+                        {% endfor %}
+                    </div>
+                </td>
             </tr>
             </tbody>
         {% endfor %}
