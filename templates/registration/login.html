@@ -5,6 +5,13 @@
     <form method="post" action="" class="form-signin text-center" style="max-width: 550px;margin:0 auto">
         {% csrf_token %}
         <h2 class="form-signin-heading">Entrar</h2>
+        <dl class="register">
+                {% for field in form %}
+                    {% if field.errors %}
+                        <div class="myerrors clearfix alert alert-warning">{{ field.label_tag }}
+                            - {{ field.errors }}</div>{% endif %}
+                {% endfor %}
+            </dl>
         <input id="id_username" maxlength="254" name="username" type="text" class="form-control" placeholder="login"
                autofocus="">
 
