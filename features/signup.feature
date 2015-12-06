@@ -25,6 +25,10 @@ Feature: Signup in the application
     * She sees "E-mail já cadastrado"
 
   Scenario: Can't signup with blank username
+    * Fernando is preparing himself to travel to USA and wants to learn english
+    * Filling the form he leave the username input blank
+    * He sees "Username: - This field is required."
+
 
   Scenario: Can't signup with existing username
     * Fernando is preparing himself to travel to USA and wants to learn english
@@ -32,7 +36,16 @@ Feature: Signup in the application
     * He sees "Username já cadastrado"
 
   Scenario: Can't signup with blank password
+    * Fernando is preparing himself to travel to USA and wants to learn english
+    * Filling the form he leave the password input blank
+    * He sees "Username: - This field is required."
 
   Scenario: Can't signup with blank password_confirmation
+    * Fernando is preparing himself to travel to USA and wants to learn english
+    * Filling the form he leave the password_confirmation input blank
+    * He sees "Password: - This field is required."
 
   Scenario: Can't signup with different password and password_confirmation
+    * Fernando is preparing himself to travel to USA and wants to learn english
+    * Filling the form he leave the username input blank
+    * He sees "Password confirmation:  - The two password fields didn't match."
