@@ -4,6 +4,7 @@ Feature: Signup in the application
     Given An user with username as "neko"
     And An user with email "carol@hotmail.com"
 
+
   Scenario: Successful signup
     Given Roberto don't know english and find golingo
     When He goes to the signup form and in the <field> he types <input>

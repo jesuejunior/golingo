@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,7 +40,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration',
     'quiz',
-    'behave_django',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -107,3 +107,46 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/collect')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
+
+# LOGGING_CONFIG = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['jj_console'],
+            'propagate': True,
+        }
+    },
+    'formatters': {
+        'simple_format': {
+            'format': '{%(levelname)s:%(asctime)s - %(funcName)s:%(lineno)d -  %(threadName)s:%(message)s}',
+        },
+    },
+
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'jj_console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple_format',
+            'stream': sys.stdout,
+        },
+    },
+}
