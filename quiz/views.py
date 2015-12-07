@@ -5,7 +5,7 @@ from braces.views import LoginRequiredMixin
 from quiz.models import Question, Unity, Lesson
 
 
-class HomeTemplateView(ListView, LoginRequiredMixin):
+class HomeTemplateView(LoginRequiredMixin, ListView):
     template_name = 'home.html'
     model = Unity
 
@@ -17,6 +17,7 @@ class HomeTemplateView(ListView, LoginRequiredMixin):
 
 class QuestionTemplateView(View):
     template_name = 'question.html'
+    model = Question
 
     def get(self, request, *args, **kwargs):
         cxt = self.get_context_data()
@@ -27,7 +28,23 @@ class QuestionTemplateView(View):
             **kwargs
         )
 
+    def post(self, request, *args, **kwargs):
+        cxt = self.get_context_data()
+        req = request.POST
+        authenticated = request.user.is_authenticated()
+        if authenticated:
+            req = req.copy()
+            req[u'user'] = request.user.pk
+
+        return TemplateResponse(
+            request=self.request,
+            template=self.template_name,
+            context=cxt,
+            **kwargs)
+
     def get_context_data(self, **kwargs):
+        question = Question.objects.prefetch_related().all()[:1][0]
         cxt = {}
-        cxt['form_answers'] = Question.answers
+        cxt['question'] = question.name
+        cxt['answers'] = question.answers.all
         return cxt
