@@ -89,6 +89,7 @@ test/unit/app-path/
 
 static/collect/*
 
+*.*.*
 cache/
 output/
 *.pid
