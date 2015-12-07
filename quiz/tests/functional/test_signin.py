@@ -1,5 +1,7 @@
 # coding=utf-8
 """Login in the application feature tests."""
+from urllib.parse import urljoin
+from django.conf import settings
 
 from pytest_bdd import (
     given,
@@ -10,8 +12,11 @@ from pytest_bdd import (
 
 
 @scenario('features/signin.feature', 'Login fails for invalid user')
-def test_login_fails_for_invalid_user():
+def test_login_fails_for_invalid_user(request, browser):
     """Login fails for invalid user."""
+    browser.visit(urljoin(settings.URL, '/accounts/login'))
+    assert browser.status_code == 200
+    assert browser.url == 'http://127.0.0.1:8000/accounts/login/'
 
 
 @scenario('features/signin.feature', 'Login fails for unregistred user')
