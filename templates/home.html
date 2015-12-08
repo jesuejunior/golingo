@@ -9,38 +9,29 @@
                 {% if unity.level == 1 %}
                     <thead>
                     <tr class="success">
-                        <th>Level {{ unity.level }}</th>
+                        <th>Level {{ unity.level }} - {{ unity.name }}</th>
                     </tr>
                     </thead>
                 {% elif unity.level == 2 %}
                     <thead>
                     <tr class="warning">
-                        <th>Level {{ unity.level }}</th>
+                        <th>Level {{ unity.level }} - {{ unity.name }}</th>
                     </tr>
                     </thead>
                 {% else %}
                     <thead>
                     <tr class="danger">
-                        <th>Level {{ unity.level }}</th>
+                        <th>Level {{ unity.level }} - {{ unity.name }}</th>
                     </tr>
                     </thead>
                 {% endif %}
 
                 <tbody>
-                <tr>
-                    <td class="accordion-toggle"  data-toggle="collapse" data-target="#collapseOn">
-                        {{ unity.name }}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <div id="collapseOne" class="collapse in">
-                            {%  for lesson in unity.get_lessons %}
-                                {{ lesson }} <br />
-                            {% endfor %}
-                        </div>
-                    </td>
-                </tr>
+                {%  for lesson in unity.get_lessons %}
+                    <tr>
+                        <td>{{ lesson }}</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         {% endfor %}
