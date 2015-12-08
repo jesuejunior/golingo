@@ -9,12 +9,6 @@ class HomeTemplateView(LoginRequiredMixin, ListView):
     template_name = 'home.html'
     model = Unity
 
-    def get_context_data(self, **kwargs):
-        context = super(HomeTemplateView, self).get_context_data(**kwargs)
-        context['lessons'] = Lesson.objects.all()
-        return context
-
-
 class QuestionTemplateView(LoginRequiredMixin, View):
     template_name = 'question.html'
     model = Question
