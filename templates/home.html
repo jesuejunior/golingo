@@ -2,47 +2,46 @@
 {% load staticfiles %}
 {% block container %}
 
-    <h3 style="text-align: center">Atividades</h3>
-    <table class="table table-bordered">
+    <h3>Activities</h3>
+    <br>
         {% for unity in object_list %}
-            {% if unity.level == 1 %}
-                <thead>
-                <tr class="success">
-                    <th>Level - {{ unity.level }}</th>
-                </tr>
-                </thead>
-            {% elif unity.level == 2 %}
-                <thead>
-                <tr class="warning">
-                    <th>Level - {{ unity.level }}</th>
-                </tr>
-                </thead>
-            {% else %}
-                <thead>
-                <tr class="danger">
-                    <th>Level - {{ unity.level }}</th>
-                </tr>
-                </thead>
-            {% endif %}
+            <table class="table table-bordered">
+                {% if unity.level == 1 %}
+                    <thead>
+                    <tr class="success">
+                        <th>Level {{ unity.level }}</th>
+                    </tr>
+                    </thead>
+                {% elif unity.level == 2 %}
+                    <thead>
+                    <tr class="warning">
+                        <th>Level {{ unity.level }}</th>
+                    </tr>
+                    </thead>
+                {% else %}
+                    <thead>
+                    <tr class="danger">
+                        <th>Level {{ unity.level }}</th>
+                    </tr>
+                    </thead>
+                {% endif %}
 
-            <tbody>
-            <tr>
-                <td class="accordion-toggle"  data-toggle="collapse" data-target="#collapseOn">
-                    Unidade - {{ unity.name }}
-                </td>
-            </tr><tr>
-                <td colspan="3">
-                    <div id="collapseOne" class="collapse in">
-                        {%  for lesson in unity.get_lessons %}
-                            {{ lesson }} <br />
-                        {% endfor %}
-                    </div>
-                </td>
-            </tr>
-            </tbody>
+                <tbody>
+                <tr>
+                    <td class="accordion-toggle"  data-toggle="collapse" data-target="#collapseOn">
+                        {{ unity.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div id="collapseOne" class="collapse in">
+                            {%  for lesson in unity.get_lessons %}
+                                {{ lesson }} <br />
+                            {% endfor %}
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         {% endfor %}
-    </table>
-    {% if link == '500' %}
-        <div class="alert alert-warning"> Tá de brincation with me cara?</div>
-    {% endif %}
 {% endblock %}
