@@ -1,5 +1,4 @@
 # encoding: utf-8
-__author__ = 'jesuejunior'
 from django.forms import TextInput, ModelForm, ChoiceField
 
 from quiz.models import Question
