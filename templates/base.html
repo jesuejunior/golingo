@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>URLReduce</title>
+    <title>Golingo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-     <!-- Loading Bootstrap -->
+    <!-- Loading Bootstrap -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Loading Flat UI -->
@@ -22,26 +22,37 @@
 <div class="navbar-fixed-top">
     <div class="container-top">
         <div class="navbar-header">
-            <a class="navbar-brand text-white" href="{% url "home" %}"><img src="{%  static 'img/logotipo.png' %}" /></a>
-        </div>  
+            <a class="navbar-brand text-white" href="{% url "home" %}"><img src="{% static 'img/logotipo.png' %}"/></a>
+        </div>
 
-    {% block menu %}
-    {% endblock %}
+        {% block menu %}
+        {% endblock %}
     </div>
 </div>
 <div class="container">
-{% block container %}
-{% endblock %}
+    {% block container %}
+    {% endblock %}
 </div>
 <div class="full-container-team">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-3">
-                <img class="img-circle img-thumb"
-                     src="https://1.gravatar.com/avatar/43bc44ff37ac20efcae477ce105ee20f"
-                     data-src="holder.js/100x100" alt="100x100">
+                <h4>Flavio Lemos</h4>
+                <p>@trollzinhodoWow</p></div>
+
+            <div class="col-lg-3">
                 <h4>Jesué Junior</h4>
                 <p>@jesuejunior</p>
+            </div>
+
+            <div class="col-lg-3">
+                <h4>Nicolas Teodosio</h4>
+                <p>@TeodosioNicolas</p>
+            </div>
+
+            <div class="col-lg-3">
+                <h4>Victor Hugo Novais</h4>
+                <p>@victorgestor</p>
             </div>
         </div>
     </div>

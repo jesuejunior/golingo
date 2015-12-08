@@ -1,4 +1,3 @@
-__author__ = 'jesuejunior'
 from quiz.models import Question, Lesson, Answer, Unity, Media, Result
 
 from django.contrib import admin
@@ -22,7 +21,6 @@ admin.site.register(Answer, AnswerAdmin)
 class LessonAdmin(admin.ModelAdmin):
     list_display = ('id', 'name',)
     list_filter = ('name', )
-
 
 
 admin.site.register(Lesson, LessonAdmin)

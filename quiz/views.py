@@ -15,7 +15,7 @@ class HomeTemplateView(LoginRequiredMixin, ListView):
         return context
 
 
-class QuestionTemplateView(View):
+class QuestionTemplateView(LoginRequiredMixin, View):
     template_name = 'question.html'
     model = Question
 
