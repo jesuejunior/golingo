@@ -2,12 +2,15 @@
 """List lesson feature tests."""
 import pytest
 from django.contrib.auth.models import User
+from model_mommy import mommy
 from pytest_bdd import (
     given,
     scenario,
     then,
     when,
 )
+
+from quiz.models import Unity, Lesson, Result
 
 
 @pytest.mark.django_db
@@ -39,7 +42,6 @@ def jack_an_logged_user_in_our_system(browser):
     browser.fill('username', 'jack')
     browser.fill('password', 'q1w2e3')
     browser.find_by_id('submit').first.click()
-    import ipdb; ipdb.set_trace()
 
 
 @given('Lessons available are:')
@@ -55,11 +57,17 @@ def _unity____lesson____dificulty_():
 @given('| Unity 1 | Lesson 1 | Easy      |')
 def _unity_1__lesson_1__easy______():
     """| Unity 1 | Lesson 1 | Easy      |."""
+    unity = mommy.make(Unity, name='Unity 1', level=1)
+    mommy.make(Lesson, id=78, name='Lesson OR', unity=unity)
+    assert Unity.objects.filter(name='Unity 1').exists()
 
 
 @given('| Unity 2 | Lesson 2 | Medium    |')
 def _unity_2__lesson_2__medium____():
     """| Unity 2 | Lesson 2 | Medium    |."""
+    unity = mommy.make(Unity, name='Unity 2', level=2)
+    mommy.make(Lesson, name='Lesson AND', unity=unity)
+    assert Unity.objects.filter(name='Unity 2').exists()
 
 
 @when('Jack is in the home page')
@@ -71,13 +79,14 @@ def jack_is_in_the_home_page(browser):
 @then('Jack gets a list of available lessons')
 def jack_gets_a_list_of_available_lessons(browser):
     """Jack gets a list of available lessons."""
-    assert 'Level 1 - Present Continuous (I am doing)' in browser.find_by_xpath("//tr[@class='success']/th")
-    assert 'Level 2 - Past Continuos' in browser.find_by_xpath("//tr[@class='warning']/th")
-    assert 'Level 3 - Presente Perfect' in browser.find_by_xpath("//tr[@class='danger']/th")
+    browser.reload()
+    browser.is_text_present('Level 1 - Unity 1') is True
+    browser.is_text_present('Level 2 - Unity 2') is True
 
 
 @then('Jack sees that "Lesson 1" is completed')
 def jack_sees_that_lesson_1_is_completed(browser):
     """Jack sees that "Lesson 1" is completed."""
-    assert 'fui-check-inverted' in browser.find_by_xpath("//i[@class='fui-check-inverted']/@class")
-
+    mommy.make(Result, lesson=Lesson.objects.get(id=78), user=User.objects.get(username='jack'))
+    browser.reload()
+    bool(browser.find_by_xpath("//i[@class='fui-check-inverted']")) is True
