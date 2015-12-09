@@ -59,8 +59,8 @@ class Result(models.Model):
     user = models.ForeignKey(User)
     lesson = models.ForeignKey(Lesson, related_name='results')
     finished_at = models.DateTimeField(default=datetime.now)
-    correct = models.IntegerField(verbose_name='Respostas corretas')
-    wrong = models.IntegerField(verbose_name='Respostas erradas')
+    correct = models.IntegerField(verbose_name='Respostas corretas', default=0)
+    wrong = models.IntegerField(verbose_name='Respostas erradas', default=0)
 
     def __str__(self):
         return self.user.username
