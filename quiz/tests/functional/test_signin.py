@@ -30,21 +30,37 @@ def jack_an_user_with_password_1234():
 
 
 @when('Jack logs in with password 1234')
-def jack_logs_in_with_password_1234():
+def jack_logs_in_with_password_1234(browser):
     """Jack logs in with password 1234."""
+    # browser.visit('http://localhost:8000')
+    # browser.fill('username', 'jack')
+    # browser.fill('password', 'errado')
+    # browser.find_by_id('submit').first.click()
 
 
 @when('Jack logs in with password errado')
-def jack_logs_in_with_password_errado():
+def jack_logs_in_with_password_errado(browser):
     """Jack logs in with password errado."""
+    browser.visit('http://localhost:8000')
+    browser.fill('username', 'jack')
+    browser.fill('password', 'errado')
+    browser.find_by_id('submit').first.click()
 
 
-@then('he sees the foo blah')
-def he_sees_the_foo_blah():
+@then('he sees the list of lessons')
+def he_sees_the_list_of_lessons(browser):
     """he sees the foo blah."""
+    browser.is_element_present_by_text('Level 1 - Present Continuous (I am doing)')
+    browser.is_element_present_by_text('Level 2 - Past Continuos')
+    browser.is_element_present_by_text('Level 3 - Presente Perfect')
 
 
 @then('login fails')
-def login_fails():
+def login_fails(browser):
     """login fails."""
+    browser.is_element_not_present_by_text('Level 1 - Present Continuous (I am doing)')
+    browser.is_element_not_present_by_text('Level 2 - Past Continuos')
+    browser.is_element_not_present_by_text('Level 3 - Presente Perfect')
+    assert 'http://localhost:8000/accounts/login/?next=/' in browser.url
+
 

@@ -3,7 +3,7 @@ Feature: Login in the application
   Scenario: Successful login
     Given Jack, an user with password 1234
     When Jack logs in with password 1234
-    Then he sees the foo blah
+    Then he sees the list of lessons
 
   Scenario: Login fails for unregistred user
     When Jack logs in with password 1234
