@@ -82,8 +82,8 @@ def jack_is_in_the_home_page(browser):
 def jack_gets_a_list_of_available_lessons(browser):
     """Jack gets a list of available lessons."""
     browser.reload()
-    browser.is_text_present('Level 1 - Unity 1') is True
-    browser.is_text_present('Level 2 - Unity 2') is True
+    assert browser.is_text_present('Level 1 - Unity 1') is True
+    assert browser.is_text_present('Level 2 - Unity 2') is True
 
 
 @then('Jack sees that "Lesson 1" is completed')
@@ -91,4 +91,4 @@ def jack_sees_that_lesson_1_is_completed(browser):
     """Jack sees that "Lesson 1" is completed."""
     mommy.make(Result, lesson=Lesson.objects.get(id=78), user=User.objects.get(username='jack'))
     browser.reload()
-    bool(browser.find_by_xpath("//i[@class='fui-check-inverted']")) is True
+    assert bool(browser.find_by_xpath("//i[@class='fui-check-inverted']")) is True
