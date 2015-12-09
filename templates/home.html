@@ -34,7 +34,6 @@
                         <th style="width: 10%"></th>
                     </tr>
                 </thead>
-
                 <tbody>
                 {%  for lesson in unity.get_lessons %}
                     <tr>
@@ -44,13 +43,10 @@
                         <td>
                             {% if lesson.results.all %}
                                 <i class="fui-check-inverted"></i>
-
                             {% endif %}
-
                         </td>
-
                         <td>
-                            <a href="#" class="btn btn-sm btn-default">Go <i class="fui-play"></i></a>
+                            <a href="{%  url 'question' 1 1 %}" class="btn btn-sm btn-default">Go <i class="fui-play"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

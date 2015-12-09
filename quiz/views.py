@@ -50,7 +50,7 @@ class QuestionTemplateView(LoginRequiredMixin, View):
     def get_context_data(self, request, lesson_id, question_id):
         self.question = Question.objects.prefetch_related().filter(lesson__id=lesson_id)[0]
         cxt = {
-            'question': self.question.name,
+            'question': self.question,
             'answers': self.question.answers.all
         }
         return cxt

@@ -1,13 +1,14 @@
-'{% extends 'menu.html' %}
+{% extends 'menu.html' %}
 {% load staticfiles %}
 {% block container %}
-
     <form method="post" action="" style="max-width: 800px;margin:0 auto">
         <div class="panel panel-default">
             <div class="panel-body" style="padding: 40px;">
                     {% csrf_token %}
-                    <h6 style="margin-bottom: 30px;">{{ question }}</h6>
-
+                    <h6 style="margin-bottom: 30px;">{{ question.name }}</h6>
+                    <div class="text-center">
+                        <img src="{{ question.image.url }}">
+                    </div>
                     <div>
                     {% for answer in answers %}
                         <div class="radio">
