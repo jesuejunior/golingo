@@ -18,10 +18,12 @@ from quiz.models import Unity, Lesson, Result
 def test_lessons_compelted_must_be_shown():
     """Lesson's compelted must be shown."""
 
+
 @pytest.mark.django_db
 @scenario('features/list_lessons.feature', 'Lesson\'s dificulty must be shown')
 def test_lessons_dificulty_must_be_shown():
     """Lesson's dificulty must be shown."""
+
 
 @pytest.mark.django_db
 @scenario('features/list_lessons.feature', 'List lessons available')
