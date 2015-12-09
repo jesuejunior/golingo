@@ -1,6 +1,7 @@
 # coding=utf-8
 """List lesson feature tests."""
-
+import pytest
+from django.contrib.auth.models import User
 from pytest_bdd import (
     given,
     scenario,
@@ -9,16 +10,17 @@ from pytest_bdd import (
 )
 
 
+@pytest.mark.django_db
 @scenario('features/list_lessons.feature', 'Lesson\'s compelted must be shown')
 def test_lessons_compelted_must_be_shown():
     """Lesson's compelted must be shown."""
 
-
+@pytest.mark.django_db
 @scenario('features/list_lessons.feature', 'Lesson\'s dificulty must be shown')
 def test_lessons_dificulty_must_be_shown():
     """Lesson's dificulty must be shown."""
 
-
+@pytest.mark.django_db
 @scenario('features/list_lessons.feature', 'List lessons available')
 def test_list_lessons_available():
     """List lessons available."""
@@ -32,10 +34,12 @@ def jack_has_completed_lesson_1(browser):
 @given('Jack, an logged user in our system')
 def jack_an_logged_user_in_our_system(browser):
     """Jack, an logged user in our system."""
+    User.objects.create_user(username='jack', password='q1w2e3')
     browser.visit('http://localhost:8000')
-    browser.fill('username', 'admin')
-    browser.fill('password', 'admin')
+    browser.fill('username', 'jack')
+    browser.fill('password', 'q1w2e3')
     browser.find_by_id('submit').first.click()
+    import ipdb; ipdb.set_trace()
 
 
 @given('Lessons available are:')
@@ -67,13 +71,13 @@ def jack_is_in_the_home_page(browser):
 @then('Jack gets a list of available lessons')
 def jack_gets_a_list_of_available_lessons(browser):
     """Jack gets a list of available lessons."""
-    browser.is_element_present_by_text('Level 1 - Present Continuous (I am doing)')
-    browser.is_element_present_by_text('Level 2 - Past Continuos')
-    browser.is_element_present_by_text('Level 3 - Presente Perfect')
+    assert 'Level 1 - Present Continuous (I am doing)' in browser.find_by_xpath("//tr[@class='success']/th")
+    assert 'Level 2 - Past Continuos' in browser.find_by_xpath("//tr[@class='warning']/th")
+    assert 'Level 3 - Presente Perfect' in browser.find_by_xpath("//tr[@class='danger']/th")
 
 
 @then('Jack sees that "Lesson 1" is completed')
 def jack_sees_that_lesson_1_is_completed(browser):
     """Jack sees that "Lesson 1" is completed."""
-    browser.is_element_present_by_css('.fui-check-inverted')
+    assert 'fui-check-inverted' in browser.find_by_xpath("//i[@class='fui-check-inverted']/@class")
 

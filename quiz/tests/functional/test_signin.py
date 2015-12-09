@@ -1,6 +1,6 @@
 # coding=utf-8
 """Login in the application feature tests."""
-
+import pytest
 from pytest_bdd import (
     given,
     scenario,
@@ -8,17 +8,17 @@ from pytest_bdd import (
     when,
 )
 
-
+@pytest.mark.django_db
 @scenario('features/signin.feature', 'Login fails for invalid user')
 def test_login_fails_for_invalid_user():
     """Login fails for invalid user."""
 
-
+@pytest.mark.django_db
 @scenario('features/signin.feature', 'Login fails for unregistred user')
 def test_login_fails_for_unregistred_user():
     """Login fails for unregistred user."""
 
-
+@pytest.mark.django_db
 @scenario('features/signin.feature', 'Successful login')
 def test_successful_login():
     """Successful login."""
@@ -50,17 +50,24 @@ def jack_logs_in_with_password_errado(browser):
 @then('he sees the list of lessons')
 def he_sees_the_list_of_lessons(browser):
     """he sees the foo blah."""
-    browser.is_element_present_by_text('Level 1 - Present Continuous (I am doing)')
-    browser.is_element_present_by_text('Level 2 - Past Continuos')
-    browser.is_element_present_by_text('Level 3 - Presente Perfect')
+
+    assert 'Level 1 - Present Continuous (I am doing)' in browser.find_by_xpath("//tr[@class='success']/th/text()")
+    assert 'Level 2 - Past Continuos' in browser.find_by_xpath("//tr[@class='warning']/th/text()")
+    assert 'Level 3 - Presente Perfect' in browser.find_by_xpath("//tr[@class='danger']/th/text()")
+    # browser.is_element_present_by_text('Level 1 - Present Continuous (I am doing)')
+    # browser.is_element_present_by_text('Level 2 - Past Continuos')
+    # browser.is_element_present_by_text('Level 3 - Presente Perfect')
 
 
 @then('login fails')
 def login_fails(browser):
     """login fails."""
-    browser.is_element_not_present_by_text('Level 1 - Present Continuous (I am doing)')
-    browser.is_element_not_present_by_text('Level 2 - Past Continuos')
-    browser.is_element_not_present_by_text('Level 3 - Presente Perfect')
+    assert 'Level 1 - Present Continuous (I am doing)' not in browser.find_by_xpath("//tr[@class='success']/th/text()")
+    assert 'Level 2 - Past Continuos' not in browser.find_by_xpath("//tr[@class='warning']/th/text()")
+    assert 'Level 3 - Presente Perfect' not in browser.find_by_xpath("//tr[@class='danger']/th/text()")
+    # browser.is_element_not_present_by_text('Level 1 - Present Continuous (I am doing)')
+    # browser.is_element_not_present_by_text('Level 2 - Past Continuos')
+    # browser.is_element_not_present_by_text('Level 3 - Presente Perfect')
     assert 'http://localhost:8000/accounts/login/?next=/' in browser.url
 
 
