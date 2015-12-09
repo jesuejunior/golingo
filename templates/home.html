@@ -30,8 +30,8 @@
                 <thead>
                     <tr>
                         <th>Lesson</th>
-                        <th>Status</th>
-                        <th></th>
+                        <th style="width: 10%">Status</th>
+                        <th style="width: 10%"></th>
                     </tr>
                 </thead>
 
@@ -39,7 +39,7 @@
                 {%  for lesson in unity.get_lessons %}
                     <tr>
                         <td>{{ lesson }}</td>
-                        <td><span class="fui-check-circle"></span></td>
+                        <td><i class="fui-check-inverted"></i></td>
                         <td><button class="btn btn-sm btn-default">Go &#8594;</button></td>
                     </tr>
                 {% endfor %}
