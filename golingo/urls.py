@@ -22,7 +22,7 @@ from quiz.views import QuestionTemplateView, HomeTemplateView, ResultTemplateVie
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeTemplateView.as_view(), name='home'),
-    url(r'^question/$', QuestionTemplateView.as_view(), name='question'),
+    url(r'^lesson/(\d+)/question/(\d+)$', QuestionTemplateView.as_view(), name='question'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^results/(?P<lesson_id>\d+)$', ResultTemplateView.as_view(), name='results'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
