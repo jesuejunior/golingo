@@ -30,7 +30,7 @@
                 <thead>
                     <tr>
                         <th>Lesson</th>
-                        <th style="width: 10%">Status</th>
+                        <th style="width: 10%">Done</th>
                         <th style="width: 10%"></th>
                     </tr>
                 </thead>
@@ -38,9 +38,20 @@
                 <tbody>
                 {%  for lesson in unity.get_lessons %}
                     <tr>
-                        <td>{{ lesson }}</td>
-                        <td><i class="fui-check-inverted"></i></td>
-                        <td><button class="btn btn-sm btn-default">Go <i class="fui-play"></i></button></td>
+                        <td>
+                            {{ lesson.name }}
+                        </td>
+                        <td>
+                            {% if lesson.results.all %}
+                                <i class="fui-check-inverted"></i>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+                            <a href="#" class="btn btn-sm btn-default">Go <i class="fui-play"></i></a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

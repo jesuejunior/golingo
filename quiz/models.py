@@ -14,7 +14,7 @@ class Unity(models.Model):
         return self.name
 
     def get_lessons(self):
-        return Lesson.objects.filter(unity=self).values_list('name', flat=True)
+        return Lesson.objects.filter(unity=self).prefetch_related('results')
 
 
 class Answer(models.Model):
@@ -57,7 +57,7 @@ class Question(models.Model):
 
 class Result(models.Model):
     user = models.ForeignKey(User)
-    lesson = models.ForeignKey(Lesson)
+    lesson = models.ForeignKey(Lesson, related_name='results')
     finished_at = models.DateTimeField(default=datetime.now)
     correct = models.IntegerField(verbose_name='Respostas corretas')
     wrong = models.IntegerField(verbose_name='Respostas erradas')
