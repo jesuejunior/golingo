@@ -152,6 +152,7 @@ def he_sees_username__this_field_is_required(browser):
 @then('He succesfuly singup and is redirect to the home page')
 def he_succesfuly_singup_and_is_redirect_to_the_home_page(browser):
     """He succesfuly singup and is redirect to the home page."""
+    browser.find_by_id('submit').first.click()
     assert 'http://localhost:8000' in browser.url
 
 
