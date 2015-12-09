@@ -60,13 +60,13 @@ def he_sees_the_list_of_lessons(browser):
     mommy.make(Lesson, name='Lesson AND', unity=unity)
     browser.reload()
 
-    browser.is_text_present('Level 2 - Unity 2') is True
+    assert browser.is_text_present('Level 2 - Unity 2') is True
 
 
 @then('login fails')
 def login_fails(browser):
     """login fails."""
-    browser.is_text_present('Level 2 - Unity 2') is False
+    assert browser.is_text_present('Level 2 - Unity 2') is False
     assert 'http://localhost:8000/accounts/login/?next=/' in browser.url
 
 

@@ -133,31 +133,46 @@ def he_goes_to_the_signup_form_and_in_the_field_he_types_input(browser):
 @then('He sees "We already have an user using this username"')
 def he_sees_we_already_have_an_user_using_this_username(browser):
     """He sees "We already have an user using this username"."""
-    browser.is_text_present("We already have an user using this username")
+    browser.fill('username', 'neko')
+    browser.find_by_id('submit').first.click()
+    assert browser.is_text_present("We already have an user using this username") is True
 
 
 @then('He sees "Password Confirmation: - This field is required."')
 def he_sees_password_confirmation__this_field_is_required(browser):
     """He sees "Password Confirmation: - This field is required."."""
-    browser.is_text_present("Password Confirmation: - This field is required.")
+    browser.fill('username', 'nicolas')
+    browser.fill('password1', '123asd')
+    browser.find_by_id('submit').first.click()
+    assert browser.is_text_present("This field is required.") is True
 
 
 @then('He sees "Password confirmation:  - The two password fields didn\'t match."')
 def he_sees_password_confirmation___the_two_password_fields_didnt_match(browser):
     """He sees "Password confirmation:  - The two password fields didn't match."."""
-    browser.is_text_present("Password confirmation:  - The two password fields didn't match.")
+    browser.fill('username', 'flavio')
+    browser.fill('password1', 'q1w2e3')
+    browser.fill('password2', 'q1w2e3s')
+    browser.find_by_id('submit').first.click()
+    assert browser.is_text_present("The two password fields didn't match.") is True
 
 
 @then('He sees "Password: - This field is required."')
 def he_sees_password__this_field_is_required(browser):
     """He sees "Password: - This field is required."."""
-    browser.is_text_present("Password: - This field is required.")
+    browser.fill('username', 'teste')
+    browser.fill('password2', '445e')
+    browser.find_by_id('submit').first.click()
+    assert browser.is_text_present("This field is required") is True
 
 
 @then('He sees "Username: - This field is required."')
 def he_sees_username__this_field_is_required(browser):
     """He sees "Username: - This field is required."."""
-    browser.is_text_present("Username: - This field is required.")
+    browser.fill('password1', 'thiago123')
+    browser.fill('password2', 'thiago123')
+    browser.find_by_id('submit').first.click()
+    assert browser.is_text_present("This field is required") is True
 
 
 @then('He succesfuly singup and is redirect to the home page')
@@ -170,13 +185,15 @@ def he_succesfuly_singup_and_is_redirect_to_the_home_page(browser):
 @then('She sees "Email: - This field is required."')
 def she_sees_email__this_field_is_required(browser):
     """She sees "Email: - This field is required."."""
-    browser.is_text_present("Email: - This field is required.")
+    browser.find_by_id('submit').first.click()
+    assert browser.is_text_present("This field is required.") is True
 
 
 @then('She sees "We already have an user using this email"')
 def she_sees_we_already_have_an_user_using_this_email(browser):
     """She sees "We already have an user using this email"."""
-    browser.is_text_present("We already have an user using this email")
+    browser.find_by_id('submit').first.click()
+    assert browser.is_text_present("We already have an user using this email") is True
 
 
 @then('| e-mail               | roberto@gemail.com|')
