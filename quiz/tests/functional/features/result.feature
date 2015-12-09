@@ -1,19 +1,17 @@
 Feature: Get result of a lesson
 
+  Background:
+    Given Jack has a username test_result & password test_result
+    And Jack submitted lesson 1 having 2 questions
+
   Scenario: Score 0%
-    Given Jack submitted lesson 1 questions
-    Then Jack should receive a list with your score (0%)
+    Given 2 answers are wrong and 0 answers are correct
+    Then Jack should receive a list with his score (0%)
 
   Scenario: Score 50%
-    Given Jack submitted the following questions
-    Then Jack should receive a list with your score (50%)
+    Given 1 answers are wrong and 1 answers are correct
+    Then Jack should receive a list with his score (50%)
 
   Scenario: Score 100%
-    Given Jack submitted the following questions
-    Then Jack should receive a list with your score (100%)
-
-#  Scenario: E-mail of lesson's resume
-#    Given Jack has submitted his answers
-#    Then Jack can choose to receive an e-mail with his results
-#    And an e-mail must be delivered to Jack's inbox with his results
-
+    Given 0 answers are wrong and 2 answers are correct
+    Then Jack should receive a list with his score (100%)

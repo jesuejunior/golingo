@@ -1,11 +1,16 @@
 # coding=utf-8
+from django.contrib.auth.models import User
+from model_mommy import mommy
+import pytest
 from pytest_bdd import (
     given,
     scenario,
     then,
+    parsers
 )
+from quiz.models import Lesson, Result
 
-DOMAIN = 'localhost:8000'
+DOMAIN = 'http://localhost:8000'
 
 
 def connect(browser):
@@ -15,54 +20,73 @@ def connect(browser):
     browser.find_by_xpath('//input[@type="submit"]')[0].click()
 
 
-@given('Jack submitted the following questions')
-def jack_submitted_the_following_questions(browser):
+@given('Jack has a username test_result & password test_result')
+def background(browser):
+    User.objects.create_user(username='test_result', password='test_result')
     connect(browser)
 
 
-@then('Jack should receive a list with your score')
+@given('Jack submitted lesson 1 having 2 questions')
+def _background():
+    mommy.make(Lesson, name='Lesson 1')
+
+
+@given(parsers.parse('{wrong:d} answers are wrong and {correct:d} answers are correct'))
+def submit_answers(wrong, correct):
+    Result.objects.create(
+        user_id=1,
+        lesson_id=1,
+        correct=correct,
+        wrong=wrong
+    )
+
+
+@then('Jack should receive a list with his score (0%)')
 def jack_should_receive_the_message_score_0(browser):
     browser.visit('%s/results/%s' % (DOMAIN, 1))
-    scores = [row.text for row in browser.find_by_xpath('//tbody/tr')]
-    expected_score = 'Present Continuous (I am doing) Lesson 1 0 2 Dec. 9, 2015, 4:12 p.m.'
+    scores = browser.find_by_xpath('//tbody/tr').text
 
-    assert len(scores) == 1
-    assert scores == [expected_score]
+    assert 'Lesson 1' in scores
+    assert '0' in scores
+    assert '2' in scores
 
 
+@pytest.mark.django_db
 @scenario('features/result.feature', 'Score 0%')
 def test_score_0(browser):
     assert browser.url == 'http://localhost:8000/results/1'
 
 
-@then('Jack should receive the message "Score: 50%"')
+@then('Jack should receive a list with his score (50%)')
 def jack_should_receive_the_message_score_50(browser):
-    browser.visit('%s/results/%s' % (DOMAIN, 3))
-    scores = [row.text for row in browser.find_by_xpath('//tbody/tr')]
-    expected_score = 'Present Continuous (I am doing) Lesson 3 1 1 Dec. 9, 2015, 4:14 p.m.'
+    browser.visit('%s/results/%s' % (DOMAIN, 1))
+    scores = browser.find_by_xpath('//tbody/tr').text
 
-    assert len(scores) == 1
-    assert scores == [expected_score]
+    assert 'Lesson 1' in scores
+    assert '1' in scores
+    assert '1' in scores
 
 
+@pytest.mark.django_db
 @scenario('features/result.feature', 'Score 50%')
 def test_score_50(browser):
-    assert browser.url == 'http://localhost:8000/results/3'
+    assert browser.url == 'http://localhost:8000/results/1'
 
 
-@then('Jack should receive the message "Score: 100%"')
+@then('Jack should receive a list with his score (100%)')
 def jack_should_receive_the_message_score_100(browser):
-    browser.visit('%s/results/%s' % (DOMAIN, 2))
-    scores = [row.text for row in browser.find_by_xpath('//tbody/tr')]
-    expected_score = 'Present Continuous (I am doing) Lesson 2 2 0 Dec. 9, 2015, 4:14 p.m.'
+    browser.visit('%s/results/%s' % (DOMAIN, 1))
+    scores = browser.find_by_xpath('//tbody/tr').text
 
-    assert len(scores) == 1
-    assert scores == [expected_score]
+    assert 'Lesson 1' in scores
+    assert '0' in scores
+    assert '2' in scores
 
 
+@pytest.mark.django_db
 @scenario('features/result.feature', 'Score 100%')
 def test_score_100(browser):
-    assert browser.url == 'http://localhost:8000/results/2'
+    assert browser.url == 'http://localhost:8000/results/1'
 
 
 # @scenario('features/result.feature', 'E-mail of lesson\'s resume')
