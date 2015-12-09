@@ -17,11 +17,12 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from quiz.views import QuestionTemplateView, HomeTemplateView
+from quiz.views import QuestionTemplateView, HomeTemplateView, ResultTemplateView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeTemplateView.as_view(), name='home'),
     url(r'^question/$', QuestionTemplateView.as_view(), name='question'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^results/(?P<lesson_id>\d+)$', ResultTemplateView.as_view(), name='results'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

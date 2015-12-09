@@ -52,7 +52,8 @@ class ResultTemplateView(LoginRequiredMixin, View):
     model = Result
 
     def get(self, request, *args, **kwargs):
-        cxt = self.get_context_data(request)
+        lesson_id = kwargs.pop('lesson_id')
+        cxt = self.get_context_data(request, lesson_id)
         return TemplateResponse(
             request=self.request,
             template=self.template_name,
@@ -60,8 +61,7 @@ class ResultTemplateView(LoginRequiredMixin, View):
             **kwargs
         )
 
-    def get_context_data(self, request):
+    def get_context_data(self, request, lesson_id):
         user = request.user
-        lesson = request.lesson
-        result = self.model.objects.filter(user_id=user.id, lesson_id=lesson).latest('finished_at')
-        return {'results': [result]}
+        result = self.model.objects.filter(user_id=user.id, lesson_id=lesson_id).latest('finished_at')
+        return {'results': [result], 'lesson': result.lesson}
