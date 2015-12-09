@@ -6,30 +6,41 @@
     <br>
         {% for unity in object_list %}
             <table class="table table-bordered">
-                {% if unity.level == 1 %}
-                    <thead>
-                    <tr class="success">
-                        <th>Level {{ unity.level }} - {{ unity.name }}</th>
+                <thead>
+                    {% if unity.level == 1 %}
+                        <tr class="success">
+                            <th>Level {{ unity.level }} - {{ unity.name }}</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    {% elif unity.level == 2 %}
+                        <tr class="warning">
+                            <th>Level {{ unity.level }} - {{ unity.name }}</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    {% else %}
+                        <tr class="danger">
+                            <th>Level {{ unity.level }} - {{ unity.name }}</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    {% endif %}
+                </thead>
+                <thead>
+                    <tr>
+                        <th>Lesson</th>
+                        <th>Status</th>
+                        <th></th>
                     </tr>
-                    </thead>
-                {% elif unity.level == 2 %}
-                    <thead>
-                    <tr class="warning">
-                        <th>Level {{ unity.level }} - {{ unity.name }}</th>
-                    </tr>
-                    </thead>
-                {% else %}
-                    <thead>
-                    <tr class="danger">
-                        <th>Level {{ unity.level }} - {{ unity.name }}</th>
-                    </tr>
-                    </thead>
-                {% endif %}
+                </thead>
 
                 <tbody>
                 {%  for lesson in unity.get_lessons %}
                     <tr>
                         <td>{{ lesson }}</td>
+                        <td><span class="fui-check-circle"></span></td>
+                        <td><button class="btn btn-default">Go &#8594;</button></td>
                     </tr>
                 {% endfor %}
                 </tbody>
