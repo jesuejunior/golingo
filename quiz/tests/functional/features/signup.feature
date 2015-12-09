@@ -10,7 +10,6 @@ Feature: Signup in the application
     When He goes to the signup form and in the <field> he types <input>
     Then He succesfuly singup and is redirect to the home page
 
-      | field                | input |
       | e-mail               | roberto@gemail.com|
       | username             | roberto_roberto|
       | password             | q1w2e3|

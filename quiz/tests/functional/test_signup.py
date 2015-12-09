@@ -1,6 +1,7 @@
 # coding=utf-8
 """Signup in the application feature tests."""
-
+import pytest
+from django.contrib.auth.models import User
 from pytest_bdd import (
     given,
     scenario,
@@ -9,41 +10,49 @@ from pytest_bdd import (
 )
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Can\'t signup with blank e-mail')
 def test_cant_signup_with_blank_email():
     """Can't signup with blank e-mail."""
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Can\'t signup with blank password')
 def test_cant_signup_with_blank_password():
     """Can't signup with blank password."""
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Can\'t signup with blank password_confirmation')
 def test_cant_signup_with_blank_password_confirmation():
     """Can't signup with blank password_confirmation."""
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Can\'t signup with blank username')
 def test_cant_signup_with_blank_username():
     """Can't signup with blank username."""
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Can\'t signup with different password and password_confirmation')
 def test_cant_signup_with_different_password_and_password_confirmation():
     """Can't signup with different password and password_confirmation."""
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Can\'t signup with existing e-mail')
 def test_cant_signup_with_existing_email():
     """Can't signup with existing e-mail."""
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Can\'t signup with existing username')
 def test_cant_signup_with_existing_username():
     """Can't signup with existing username."""
 
 
+@pytest.mark.django_db
 @scenario('features/signup.feature', 'Successful signup')
 def test_successful_signup():
     """Successful signup."""
@@ -52,11 +61,13 @@ def test_successful_signup():
 @given('An user with email "carol@hotmail.com"')
 def an_user_with_email_carolhotmailcom(browser):
     """An user with email "carol@hotmail.com"."""
+    User.objects.create_user(username='carol', password='114455', email='carol@hotmail.com')
 
 
 @given('An user with username "neko"')
 def an_user_with_username_neko(browser):
     """An user with username "neko"."""
+    User.objects.create_user(username='neko', password='123456')
 
 
 @given('Caroline is a student and wants to learn english')
@@ -80,7 +91,7 @@ def roberto_doesnt_know_english_and_find_golingo(browser):
 @when('Filling the form he leave the password input blank')
 def filling_the_form_he_leave_the_password_input_blank(browser):
     """Filling the form he leave the password input blank."""
-    browser.fill('password', '')
+    browser.fill('password1', '')
 
 
 @when('Filling the form he leave the password_confirmation input blank')
@@ -177,7 +188,7 @@ def _email________________robertogemailcom(browser):
 @then('| password             | q1w2e3|')
 def _password______________q1w2e3(browser):
     """| password             | q1w2e3|."""
-    browser.fill('password', 'q1w2e3')
+    browser.fill('password1', 'q1w2e3')
 
 
 @then('| password_confirmation| q1w2e3|')
@@ -190,4 +201,3 @@ def _password_confirmation_q1w2e3(browser):
 def _username______________roberto_roberto(browser):
     """| username             | roberto_roberto|."""
     browser.fill('username', 'roberto_roberto')
-
