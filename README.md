@@ -3,7 +3,7 @@ Learn english by quizzes
 
 * Requires Python3
 
-# Clone the project
+### Clone the project
 
 ```shell
 $ git clone git@github.com:jesuejunior/golingo.git
