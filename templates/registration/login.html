@@ -1,25 +1,30 @@
 {% extends "menu.html" %}
 
 {% block container %}
+    <div class="form-signin">
 
-    <form method="post" action="" class="form-signin text-center" style="max-width: 550px;margin:0 auto">
-        {% csrf_token %}
-        <h2 class="form-signin-heading">Entrar</h2>
-        <dl class="register">
-                {% for field in form %}
-                    {% if field.errors %}
-                        <div class="myerrors clearfix alert alert-warning">{{ field.label_tag }}
-                            - {{ field.errors }}</div>{% endif %}
-                {% endfor %}
-            </dl>
-        <input id="id_username" maxlength="254" name="username" type="text" class="form-control" placeholder="login"
-               autofocus="">
+        <h2 class="form-signin-heading">Log in</h2>
+        <form method="post" action="" style="max-width: 550px;margin:0 auto">
+            {% csrf_token %}
+            <dl class="register">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="myerrors clearfix alert alert-warning">{{ field.label_tag }}
+                                - {{ field.errors }}</div>{% endif %}
+                    {% endfor %}
+                </dl>
+            <p class="required">
+                <label for="id_username">Username:</label>
+                <input id="id_username" maxlength="254" name="username" type="text" class="form-control" placeholder="username" autofocus="">
+            </p>
 
-        <input id="id_password" maxlength="4096" name="password" type="password" class="form-control"
-               placeholder="senha">
+            <p class="required">
+                <label for="id_password">Password:</label>
+                <input id="id_password" maxlength="120" name="password" type="password" class="form-control" placeholder="password">
+            </p>
 
-        <input type="submit" value="login" class="btn btn-lg btn-primary btn-block" id="submit"/>
+            <button type="submit"  class="btn btn-lg btn-primary btn-block" id="submit">Login </button>
 
-    </form>
-
+        </form>
+    </div>
 {% endblock %}

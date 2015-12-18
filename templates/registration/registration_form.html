@@ -13,23 +13,29 @@
                             - {{ field.errors }}</div>{% endif %}
                 {% endfor %}
             </dl>
-            <p class="required"><label for="id_username">Usuário:</label> <input id="id_username" maxlength="30"
-                                                                                 name="username" type="text"
-                                                                                 class="form-control"></p>
-
-            <p class="required"><label for="id_email">E-mail:</label> <input id="id_email" name="email" type="text"
-                                                                             class="form-control"></p>
-
-            <p class="required"><label for="id_password1">Senha:</label> <input id="id_password1" name="password1"
-                                                                                type="password" class="form-control">
+            <p class="required">
+                <label for="id_username">Usuário:</label>
+                <input id="id_username" maxlength="30" name="username" type="text" class="form-control">
             </p>
 
-            <p class="required"><label for="id_password2">Senha (novamente):</label> <input id="id_password2"
-                                                                                            name="password2"
-                                                                                            type="password"
-                                                                                            class="form-control"></p>
+            <p class="required">
+                <label for="id_email">E-mail:</label>
+                <input id="id_email" name="email" type="text" class="form-control">
+            </p>
 
-            <p><input class="btn btn-lg btn-block btn-primary" type="submit" id="submit" value="Cadastrar"></p>
+            <p class="required">
+                <label for="id_password1">Senha:</label>
+                <input id="id_password1" name="password1" type="password" class="form-control">
+            </p>
+
+            <p class="required">
+                <label for="id_password2">Senha (novamente):</label>
+                <input id="id_password2" name="password2" type="password" class="form-control">
+            </p>
+
+            <p>
+                <button class="btn btn-lg btn-block btn-primary" type="submit" id="submit" >Cadastrar</button>
+            </p>
         </form>
 
     </div>
