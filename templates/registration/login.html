@@ -1,10 +1,10 @@
 {% extends "menu.html" %}
 
 {% block container %}
-    <div class="form-signin">
+    <div class="form-register">
 
-        <h2 class="form-signin-heading">Log in</h2>
-        <form method="post" action="" style="max-width: 550px;margin:0 auto">
+        <h2 class="text-center">Log in</h2>
+        <form method="post" action="" >
             {% csrf_token %}
             <dl class="register">
                     {% for field in form %}
@@ -13,18 +13,24 @@
                                 - {{ field.errors }}</div>{% endif %}
                     {% endfor %}
                 </dl>
-            <p class="required">
+            <div class="form-group">
                 <label for="id_username">Username:</label>
-                <input id="id_username" maxlength="254" name="username" type="text" class="form-control" placeholder="username" autofocus="">
-            </p>
+                <input id="id_username" maxlength="120" name="username" type="text" class=" require form-control" placeholder="Put your username" autofocus="">
+            </div>
 
-            <p class="required">
+            <div class="form-group">
                 <label for="id_password">Password:</label>
-                <input id="id_password" maxlength="120" name="password" type="password" class="form-control" placeholder="password">
-            </p>
+                <input id="id_password" maxlength="40" name="password" type="password" class="form-control" placeholder="Put your password">
+            </div>
 
             <button type="submit"  class="btn btn-lg btn-primary btn-block" id="submit">Login </button>
 
         </form>
+        <div class="form-info">
+            <p>
+                Don't have an account? <a href="{% url 'registration_register' %}">Sign Up</a>
+
+            </p>
+        </div>
     </div>
 {% endblock %}
