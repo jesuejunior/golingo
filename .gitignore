@@ -86,7 +86,7 @@ test/unit/app-path/
 db.sqlite3
 static/collect/*
 golingo/settings_local.py
-*.*.*
+*.*.*.test*
 cache/
 output/
 *.pid
