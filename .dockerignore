@@ -1,0 +1,8 @@
+.git
+*.pyc
+*.sqlite3
+*.md
+*.log
+.cache
+__pycache__
+LICENSE
