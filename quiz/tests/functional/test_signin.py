@@ -18,10 +18,12 @@ from quiz.models import Unity, Lesson
 def test_login_fails_for_invalid_user():
     """Login fails for invalid user."""
 
+
 @pytest.mark.django_db
 @scenario('features/signin.feature', 'Login fails for unregistred user')
 def test_login_fails_for_unregistred_user():
     """Login fails for unregistred user."""
+
 
 @pytest.mark.django_db
 @scenario('features/signin.feature', 'Successful login')
@@ -68,5 +70,3 @@ def login_fails(browser):
     """login fails."""
     assert browser.is_text_present('Level 2 - Unity 2') is False
     assert 'http://localhost:8000/accounts/login/?next=/' in browser.url
-
-

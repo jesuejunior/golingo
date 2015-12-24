@@ -9,12 +9,14 @@ from pytest_bdd import (
 )
 
 
-@scenario('features/submit_lesson.feature', 'Answer the final question of a lesson')
+@scenario('features/submit_lesson.feature',
+          'Answer the final question of a lesson')
 def test_answer_the_final_question_of_a_lesson():
     """Answer the final question of a lesson."""
 
 
-@scenario('features/submit_lesson.feature', 'Answer the first question of a lesson')
+@scenario('features/submit_lesson.feature',
+          'Answer the first question of a lesson')
 def test_answer_the_first_question_of_a_lesson():
     """Answer the first question of a lesson."""
 
@@ -52,4 +54,3 @@ def jack_receives_the_next_question_of_lesson_1():
 @then('Jack receives the result of Lesson 1')
 def jack_receives_the_result_of_lesson_1():
     """Jack receives the result of Lesson 1."""
-
