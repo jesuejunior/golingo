@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import sys
 
-#set configs to prod
+# set configs to prod
 
 DATABASE_NAME = os.environ.get('DATABASE_NAME', 'golingo')
 DATABASE_HOST = os.environ.get('DATABASE_HOST', '127.0.0.1')
@@ -35,10 +35,11 @@ DEBUG = not os.environ.get('PROD', False)
 
 ALLOWED_HOSTS = ['*']
 
-
+INTERNAL_IPS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,6 +119,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/collect')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'ENG',
+    'HEADER_DATE_FORMAT': 'l, j. F Y',
+    'HEADER_TIME_FORMAT': 'H:i',
+    'SHOW_REQUIRED_ASTERISK': True,
+    'CONFIRM_UNSAVED_CHANGES': True
+
+}
 
 # LOGGING_CONFIG = True
 
