@@ -1,6 +1,6 @@
-body {
-    padding-top: 70px;
-}
+/*body{*/
+    /*margin-top: 30px;*/
+/*}*/
 
 .form-register {
     max-width: 550px;
@@ -14,4 +14,18 @@ body {
 
 .form-info {
     padding-top: 30px;
+}
+
+.navbar .navbar-nav>li>.btn-bordered {
+    background: none;
+    border: 1px solid #5A447E;
+    color: #5A447E;
+    padding: 4px 20px;
+    margin: 10px auto;
+}
+
+.navbar .navbar-nav>li>.btn-bordered:hover{
+    background: #5A447E;
+    border: 1px solid #5A447E;
+    color: #ffffff;
 }
