@@ -14,6 +14,13 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import sys
 
+#set configs to prod
+
+DATABASE_NAME = os.environ.get('DATABASE_NAME', 'golingo')
+DATABASE_HOST = os.environ.get('DATABASE_HOST', '127.0.0.1')
+DATABASE_USER = os.environ.get('DATABASE_USER', 'postgres')
+DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '123456')
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -24,7 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ego4*=-lpv6u+9iq6wed&7%#=_ywu@6i_i0)m0)*ew#%wgw67x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not os.environ.get('PROD', False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -79,8 +86,12 @@ WSGI_APPLICATION = 'golingo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+        'HOST': DATABASE_HOST,
+        'PORT': '5432',
     }
 }
 
