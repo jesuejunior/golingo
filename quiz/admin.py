@@ -49,7 +49,7 @@ admin.site.register(Question, QuestionAdmin)
 
 
 class ResultAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'lesson', 'correct', 'wrong',)
-    list_filter = ('user', 'lesson', 'correct', 'wrong',)
+    list_display = ('id', 'user', 'lesson', 'correct', 'question',)
+    list_filter = ('user', 'lesson', 'correct', 'question',)
 
 admin.site.register(Result, ResultAdmin)

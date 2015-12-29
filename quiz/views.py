@@ -1,7 +1,7 @@
 # Create your views here.
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from django.core.urlresolvers import reverse
-from django.db.models import F
+from django.db.models import F, Count
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.views.generic import View, ListView
@@ -85,5 +85,5 @@ class ResultTemplateView(LoginRequiredMixin, View):
 
     def get_context_data(self, request, lesson_id):
         user = request.user
-        result = self.model.objects.filter(user_id=user.id, lesson_id=lesson_id).latest('finished_at')
+        result = self.model.objects.filter(user_id=user.id, lesson_id=lesson_id).latest('finished_at').annotate(correct=Count('correct'))
         return {'results': [result], 'lesson': result.lesson}
