@@ -48,7 +48,13 @@ $ mkvirtualenv --python=/usr/local/bin/python3 golingo
 $ pip install -r requirements.txt
 ```
 
-### Run syncdb to create a admin user
+### Create a container of PostgreSQL if you don't have docker installed you will need run PostgreSQL instance locally
+
+```shell
+docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=123456 -e POSTGRES_USER=postgres -e POSTGRES_DB=golingo -d postgres
+```
+
+### Run syncdb to create an admin user
 
 ```shell
 $ python manager.py syncdb
@@ -71,3 +77,5 @@ $ py.test
 ```shell
 $ python manager.py runserver
 ```
+
+
