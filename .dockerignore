@@ -3,6 +3,7 @@
 *.sqlite3
 *.md
 *.log
+*.*.*.test*
 .cache
 __pycache__
 LICENSE

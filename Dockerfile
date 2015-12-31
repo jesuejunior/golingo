@@ -1,10 +1,9 @@
-FROM python:3.4.3
+FROM alpine:3.3
 
-RUN apt-get -y update \
-	&& apt-get -y install python-pip \
-	&& apt-get autoremove -y \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache python3 python3-dev libpq gcc  linux-headers musl-dev postgresql-dev && \
+    apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
+    wget "https://bootstrap.pypa.io/get-pip.py" -O /dev/stdout | python3 && \
+    apk del build-dependencies
 
 COPY . /golingo
 
