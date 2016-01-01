@@ -13,4 +13,4 @@ RUN pip install -r requirements.pip
 
 EXPOSE 8000
 
-CMD ["gunicorn", "-w", "2", "golingo.wsgi:application"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000",  "-w", "2", "golingo.wsgi:application"]
