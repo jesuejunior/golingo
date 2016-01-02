@@ -9,7 +9,8 @@ COPY . /golingo
 
 WORKDIR /golingo
 
-RUN pip install -r requirements.pip
+RUN pip install -r requirements.pip \
+	&& python3 manage.py collectstatic --noinput
 
 EXPOSE 8000
 
