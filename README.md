@@ -54,17 +54,19 @@ $ pip install -r requirements.txt
 docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=123456 -e POSTGRES_USER=postgres -e POSTGRES_DB=golingo -d postgres
 ```
 
+### Run migrations
+
+```shell
+$ python manager.py migrate auth && python manager.py migrate
+```
+
 ### Run syncdb to create an admin user
 
 ```shell
 $ python manager.py syncdb
 ```
 
-### Run migrations
 
-```shell
-$ python manager.py migrate
-```
 
 ### Run all tests
 
