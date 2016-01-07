@@ -1,6 +1,13 @@
 # golingo
 Learn english by quizzes 
 
+### Used colors
+ 
+ * Primary: #4C007F
+ * Secundary: #777777
+ * Auxiliary: #B64CFF
+ * Auxiliary: #9700FF
+
 * Requires Python3
 
 ### Clone the project
