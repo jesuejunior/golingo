@@ -21,6 +21,8 @@ DATABASE_HOST = os.environ.get('DATABASE_HOST', '127.0.0.1')
 DATABASE_USER = os.environ.get('DATABASE_USER', 'postgres')
 DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '123456')
 
+MEMCACHED_HOST = os.environ.get('MEMCACHED_HOST', '127.0.0.1')
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -96,7 +98,14 @@ DATABASES = {
     }
 }
 
+if not DEBUG:
 
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+            'LOCATION': MEMCACHED_HOST,
+        }
+    }
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -121,7 +130,7 @@ STATICFILES_DIRS = (
 )
 
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'ENG',
+    'ADMIN_NAME': 'ENGROCKET',
     'HEADER_DATE_FORMAT': 'l, j. F Y',
     'HEADER_TIME_FORMAT': 'H:i',
     'SHOW_REQUIRED_ASTERISK': True,
@@ -133,13 +142,18 @@ SUIT_CONFIG = {
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse',
         }
     },
     'loggers': {
+        'gunicorn.errors': {
+            'level': 'DEBUG',
+            'handlers': ['gunicorn'],
+            'propagate': True,
+        },
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
@@ -158,6 +172,13 @@ LOGGING = {
     },
 
     'handlers': {
+        'gunicorn': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'simple_format',
+            'filename': '/var/log/golingo.error.log',
+            'maxBytes': 1024 * 1024 * 100,
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
