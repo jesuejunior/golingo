@@ -1,4 +1,4 @@
-# golingo
+# Rocketlang
 Learn english by quizzes 
 
 ### Used colors
@@ -13,11 +13,11 @@ Learn english by quizzes
 ### Clone the project
 
 ```shell
-$ git clone git@github.com:jesuejunior/golingo.git
+$ git clone git@github.com:jesuejunior/rocketlang.git
 ```
 
 ```shell
-$ cd golingo
+$ cd rocketlang
 ```
 ### Install virtualenv 
 
@@ -40,13 +40,13 @@ $ sudo pip install virtualenvwrapper
 ### Creating virtualenv on Unix0like with Python3
 
 ```shell
-$ mkvirtualenv --python=/usr/bin/python3 golingo
+$ mkvirtualenv --python=/usr/bin/python3 rocketlang
 ```
 
 ### Creating virtualenv on OSX with Python3
 
 ```shell
-$ mkvirtualenv --python=/usr/local/bin/python3 golingo
+$ mkvirtualenv --python=/usr/local/bin/python3 rocketlang
 ```
 
 ### Install dependencies for the project
@@ -58,7 +58,7 @@ $ pip install -r requirements.txt
 ### Create a container of PostgreSQL if you don't have docker installed you will need run PostgreSQL instance locally
 
 ```shell
-docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=123456 -e POSTGRES_USER=postgres -e POSTGRES_DB=golingo -d postgres
+docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=123456 -e POSTGRES_USER=postgres -e POSTGRES_DB=rocketlang -d postgres
 ```
 
 ### Run migrations

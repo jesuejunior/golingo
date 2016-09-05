@@ -6,7 +6,7 @@ Feature: Signup in the application
 
 
   Scenario: Successful signup
-    Given Roberto doesn't know english and find golingo
+    Given Roberto doesn't know english and find rocketlang
     When He goes to the signup form and in the <field> he types <input>
     Then He succesfuly singup and is redirect to the home page
 

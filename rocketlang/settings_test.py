@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from golingo.settings import *
+from rocketlang.settings import *
 
 DATABASES = {
     'default': {

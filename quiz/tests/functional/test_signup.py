@@ -82,9 +82,9 @@ def fernando_is_preparing_himself_to_travel_to_usa_and_wants_to_learn_english(br
     browser.visit('http://localhost:8000/accounts/register/')
 
 
-@given('Roberto doesn\'t know english and find golingo')
-def roberto_doesnt_know_english_and_find_golingo(browser):
-    """Roberto doesn't know english and find golingo."""
+@given('Roberto doesn\'t know english and find rocketlang')
+def roberto_doesnt_know_english_and_find_rocketlang(browser):
+    """Roberto doesn't know english and find rocketlang."""
     browser.visit('http://localhost:8000/accounts/register/')
 
 
