@@ -92,3 +92,4 @@ output/
 *.pid
 .idea/
 .DS_Store
+rocketlang.db
